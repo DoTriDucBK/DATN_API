@@ -4,6 +4,7 @@ const router = express.Router();
 let userController = new UserController();
 router.get("/", userController.getAll);
 // router.get("/class-sub",classInfoController.getClassBySubject);
-router.post("/", userController.createUser);
+router.post('/signup', userController.postSignup);
+router.put('/login', userController.putLogin);
 
 module.exports = router;

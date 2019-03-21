@@ -19,7 +19,7 @@ export default class TutorRepository {
     public async update(id, tutor){
         return await this.tutorRepo.update(id, tutor);
     }
-    
+    //duc
     public async create(tutor: Tutor): Promise<Tutor> {
         return await this.tutorRepo.save(tutor);
     }

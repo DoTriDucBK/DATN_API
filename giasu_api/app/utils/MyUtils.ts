@@ -1,4 +1,7 @@
-
+import {user} from '../entities/user';
+import * as bcrypt from "bcrypt";
+// var jwt = require('jsonwebtoken');
+// var config = require('../config/token');
 export const MyUtil = {
     handleError: (error, res) => {
         res.send({ code: "error", message: error.message })
@@ -7,5 +10,39 @@ export const MyUtil = {
     handleErrorFunction: (err) => { console.log("Error") },
     handleSuccess: (data, res) => {
         res.send({ code: "success", data: data ? data : {} })
+    },
+    // getToken: (user: user) => {
+    //     if (!user) {
+    //         console.log("User is not existed!")
+    //         return null;
+    //     }
+    //     var token = jwt.sign({ id: user.idUser }, config.secret, {
+    //         expiresIn: config.expires // expires in 24 hours
+    //     });
+    //     return token;
+    // },
+    // getUserIdByToken: (token: string) => {
+    //     var user_account_id = 0;
+    //     if (token) {
+    //         jwt.verify(token, config.secret, function (err, decoded) {
+    //             if (err) {
+    //                 console.log(err.message)
+    //             }
+    //             else {
+    //                 console.log(decoded)
+    //                 user_account_id = decoded.id
+    //             }
+    //         });
+    //     }
+    //     return user_account_id;
+    // },
+    getHashPass: (pass: string) => {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(pass, salt)
+        return hash
+    },
+    checkPass: (newPass: string, pass: string) => {
+        var res = bcrypt.compareSync(newPass, pass) 
+        return res;
     }
 }

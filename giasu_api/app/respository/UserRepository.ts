@@ -1,30 +1,44 @@
-import {user as User} from '../entities/user';
-import{Repository, getConnectionManager, getConnection, getRepository} from 'typeorm'; 
+import { user as User } from '../entities/user';
+import { Repository, getConnectionManager, getConnection, getRepository } from 'typeorm';
 
 export default class UserRepository {
     private userRepo: Repository<User>;
-    constructor(){
+    constructor() {
         this.userRepo = getRepository(User);
     }
-    public async getAll(){
+    public async getAll() {
         return await this.userRepo.find();
     }
-    // public async getOne(id:number) : Promise<ClassInfo>{
-    //     return await this.classInfoRepo.findOne({"idClass": id});
-    // }
-    // public async delete(id){
-    //     return await this.classInfoRepo.delete(id);
-    // }
-
-    // public async update(id, classInfo){
-    //     return await this.classInfoRepo.update(id, classInfo);
-    // }
-    
-    public async create(user: User){
-        return await this.userRepo.save(user); 
+    public async getOne(id: string): Promise<User> {
+        return await this.userRepo.findOne({ "idUser": id });
     }
-    
-    // public async findBySubject (sub: string){
-    //     return await this.classInfoRepo.findOne({"nameSubject": sub})
-    // }
+    public async create(user: User) {
+        return await this.userRepo.save(user);
+    }
+
+    public async delete(id: string): Promise<User> {
+        let user = await this.getOne(id);
+        await this.userRepo.delete(id);
+        return user;
+
+    }
+    public async update(id: string, user: User): Promise<User> {
+        await this.userRepo.update(id, user);
+        return await this.getOne(id);
+    }
+
+    public async findByUserName(username: string): Promise<User> {
+        let user = await this.userRepo.findOne({ "userName": username })
+        return user;
+    }
+
+    public async findByEmail(email: string): Promise<User> {
+        let user = await this.userRepo.findOne({ "emailUser": email })
+        return user;
+    }
+
+    public async findByPhone(phone: string): Promise<User> {
+        let user = await this.userRepo.findOne({ "telUser": phone })
+        return user;
+    }
 }
