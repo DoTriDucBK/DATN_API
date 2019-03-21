@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import TutorRepository from '../respository/TutorRepository';
 import { MyUtil } from "../utils/MyUtils";
 
+
 export default class TutorController {
     private tutorRepo: TutorRepository;
     constructor() {
@@ -44,4 +45,11 @@ export default class TutorController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    searchTutor = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get list Tutor search ==> GET");
+        let options = req.query;
+        await this.tutorRepo.findTutor(options)
+            .then(data => MyUtil.handleSuccess(data,res))
+            .catch(err => MyUtil.handleError(err,res))
+    }
 }

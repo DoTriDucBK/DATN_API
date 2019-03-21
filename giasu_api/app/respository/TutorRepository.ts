@@ -27,4 +27,7 @@ export default class TutorRepository {
     public async findBySubject (sub: string){
         return await this.tutorRepo.find({"nameSubject": sub})
     }
+    public async findTutor (options){
+        return await this.tutorRepo.find(options)
+    }
 }

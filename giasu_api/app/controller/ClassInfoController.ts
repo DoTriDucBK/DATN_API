@@ -24,6 +24,13 @@ export default class ClassInfoController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    searchClass = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received search Class ==> GET");
+        let options = req.query;
+        await this.classInfoRepo.searchClass(options)
+            .then(data => MyUtil.handleSuccess(data,res))
+            .catch(err=> MyUtil.handleError(err,res))
+    };
     createClassInfo = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log("Received createClassInfo ==> POST");

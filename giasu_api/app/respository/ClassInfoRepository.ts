@@ -27,4 +27,7 @@ export default class ClassInfoRepository {
     public async findBySubject (sub: string){
         return await this.classInfoRepo.findOne({"nameSubject": sub})
     }
+    public async searchClass (options){
+        return await this.classInfoRepo.find(options);
+    }
 }
