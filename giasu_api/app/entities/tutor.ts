@@ -120,4 +120,12 @@ export class tutor {
         })
     link_image:string | null;
         
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"methodTeaching"
+        })
+    methodTeaching:string;
+        
 }

@@ -17,8 +17,10 @@ export const Utils = {
         return -1;
     },
     checkUsername(user_acc_name: string) {
-        const reg = /\w{6,15}/;
-        return reg.test(user_acc_name);
+        console.log(user_acc_name, "&&&&&")
+        if (user_acc_name && user_acc_name.length > 0)
+            return true
+        return false;
     },
     checkPassword(user_acc_pass: string) {
         if (user_acc_pass.length > 3) {
@@ -54,8 +56,8 @@ export const Utils = {
 
         const telephone = /^(02|2)\d{9}$/;
 
-           flag = user_acc_phon.match(gpcPattern) || user_acc_phon.match(vmsPattern) || user_acc_phon.match(viettelPattern) || user_acc_phon.match(vnm) || user_acc_phon.match(beeline) || user_acc_phon.match(telephone)
-           || user_acc_phon.match(vinaphone) || user_acc_phon.match(mobiphone) || user_acc_phon.match(viettel) || user_acc_phon.match(vnmobile) || user_acc_phon.match(Gmobile);
+        flag = user_acc_phon.match(gpcPattern) || user_acc_phon.match(vmsPattern) || user_acc_phon.match(viettelPattern) || user_acc_phon.match(vnm) || user_acc_phon.match(beeline) || user_acc_phon.match(telephone)
+            || user_acc_phon.match(vinaphone) || user_acc_phon.match(mobiphone) || user_acc_phon.match(viettel) || user_acc_phon.match(vnmobile) || user_acc_phon.match(Gmobile);
 
         return flag;
     },

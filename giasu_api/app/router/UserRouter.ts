@@ -3,8 +3,12 @@ const express = require("express");
 const router = express.Router();
 let userController = new UserController();
 router.get("/", userController.getAll);
-// router.get("/class-sub",classInfoController.getClassBySubject);
+router.get('/verifyAuth', userController.getUserByToken);
+router.get('/:user_account_id', userController.getOne);
 router.post('/signup', userController.postSignup);
 router.put('/login', userController.putLogin);
+router.put('/logout', userController.putLogout);
+router.put('/edit', userController.putUpdateUser);
+router.put('/change-password', userController.putChangePassword)
 
 module.exports = router;

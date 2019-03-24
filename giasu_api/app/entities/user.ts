@@ -4,13 +4,11 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("user",{schema:"gia_su_thong_minh"})
 export class user {
 
-    @Column("varchar",{ 
-        nullable:false,
-        primary:true,
-        length:10,
+    @PrimaryGeneratedColumn({
+        type:"int", 
         name:"idUser"
         })
-    idUser:string;
+    idUser:number;
         
 
     @Column("varchar",{ 
@@ -39,9 +37,38 @@ export class user {
 
     @Column("varchar",{ 
         nullable:false,
-        length:45,
+        length:225,
         name:"password"
         })
     password:string;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"token"
+        })
+    token:string | null;
+        
+
+    @Column("timestamp",{ 
+        nullable:true,
+        name:"userLastLogin"
+        })
+    userLastLogin:Date | null;
+        
+
+    @Column("timestamp",{ 
+        nullable:true,
+        name:"userCreate"
+        })
+    userCreate:Date | null;
+        
+
+    @Column("timestamp",{ 
+        nullable:true,
+        name:"userUpdate"
+        })
+    userUpdate:Date | null;
         
 }

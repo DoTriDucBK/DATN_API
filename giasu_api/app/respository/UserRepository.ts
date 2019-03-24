@@ -9,20 +9,20 @@ export default class UserRepository {
     public async getAll() {
         return await this.userRepo.find();
     }
-    public async getOne(id: string): Promise<User> {
-        return await this.userRepo.findOne({ "idUser": id });
+    public async getOne(id: number): Promise<User> {
+        return await this.userRepo.findOne({"idUser": id });
     }
     public async create(user: User) {
         return await this.userRepo.save(user);
     }
 
-    public async delete(id: string): Promise<User> {
+    public async delete(id: number): Promise<User> {
         let user = await this.getOne(id);
         await this.userRepo.delete(id);
         return user;
 
     }
-    public async update(id: string, user: User): Promise<User> {
+    public async update(id: number, user: User): Promise<User> {
         await this.userRepo.update(id, user);
         return await this.getOne(id);
     }
@@ -41,4 +41,8 @@ export default class UserRepository {
         let user = await this.userRepo.findOne({ "telUser": phone })
         return user;
     }
+    public async findByToken(token: string) :Promise<User> {
+        return await this.userRepo.findOne({token: token})
+    }
+
 }

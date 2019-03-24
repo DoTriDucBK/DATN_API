@@ -2,10 +2,10 @@ import { user as User } from "../entities/user";
 
 export default interface IUserAccountService {
     getAll(): Promise<Array<User>>
-    getOne(id: string): Promise<User>
+    getOne(id: number): Promise<User>
     getUserByToken(token: string): Promise<User>
     register(user: User):Promise<User>
-    delete(id: string): Promise<User>
+    delete(id: number): Promise<User>
     update(token: string, user: User): Promise<User>
     findByEmail(email: string): Promise<User>
     findByPhone(phone: any): Promise<User>
