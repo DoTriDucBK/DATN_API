@@ -194,31 +194,11 @@ export default class UserAccountService implements IUserAccountService {
 
         if (!username || !password) throw new Error("Data is not enough!");
 
-        let check = 0;
-
-        // if (Utils.isEmailAddress(username)) {
-        //     check = 1;
-        // } else if (Utils.isPhoneNumber(username)) {
-        //     check = 2;
-        // }
-
-        // if (check == 0) throw new Error("Email or phone is not true!")
-        // else {
             let user = new User();
             await this.userRepo.findByUserName(username)
                 .then(data => user = data)
                 .catch(err => console.log(err))
-            // if (!user) {
-            //     if (check == 1) {
-            //         await this.userRepo.findByEmail(username)
-            //             .then(data => user = data)
-            //             .catch(err => console.log(err))
-            //     } else if (check == 2) {
-            //         await this.userRepo.findByPhone(username)
-            //             .then(data => user = data)
-            //             .catch(err => console.log(err))
-            //     }
-            // }
+           
             console.log("user: ", user);
             if (!user) throw new Error("Username is not true!")
 
@@ -233,7 +213,6 @@ export default class UserAccountService implements IUserAccountService {
                 .then(data => user = data)
                 .catch(err => { throw new Error(err) })
             return user
-        // }
     }
 
     public async logout(token: string): Promise<User> {
@@ -247,12 +226,12 @@ export default class UserAccountService implements IUserAccountService {
 
         var id = MyUtil.getUserIdByToken(token);
         if (!id || (id <= 0) || (user.idUser !== id)) throw new Error("Token is not true!");
-
-        user.token = "";
-        user.userUpdate = new Date();
-        await this.userRepo.update(user.idUser, user)
-            .then(data => user = data)
-            .catch(err => { throw new Error(err) })
-        return user
+        user.token = MyUtil.getToken(user);
+            user.userLastLogin = new Date();
+            user.userUpdate = new Date();
+            await this.userRepo.update(user.idUser, user)
+                .then(data => user = data)
+                .catch(err => { throw new Error(err) })
+            return user
     }
 }
