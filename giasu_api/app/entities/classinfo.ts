@@ -4,21 +4,18 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("classinfo",{schema:"gia_su_thong_minh"})
 export class classinfo {
 
-    @Column("varchar",{ 
-        nullable:false,
-        primary:true,
-        length:45,
+    @PrimaryGeneratedColumn({
+        type:"int", 
         name:"idClass"
         })
-    idClass:string;
+    idClass:number;
         
 
-    @Column("varchar",{ 
-        nullable:false,
-        length:10,
+    @Column("int",{ 
+        nullable:true,
         name:"idUser"
         })
-    idUser:string;
+    idUser:number | null;
         
 
     @Column("tinyint",{ 

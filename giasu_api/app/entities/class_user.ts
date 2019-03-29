@@ -4,9 +4,8 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("class_user",{schema:"gia_su_thong_minh"})
 export class class_user {
 
-    @Column("int",{ 
-        nullable:false,
-        primary:true,
+    @PrimaryGeneratedColumn({
+        type:"int", 
         name:"idClass_User"
         })
     idClass_User:number;
@@ -24,5 +23,19 @@ export class class_user {
         name:"idUser"
         })
     idUser:number;
+        
+
+    @Column("int",{ 
+        nullable:false,
+        name:"status"
+        })
+    status:number;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"idTutor"
+        })
+    idTutor:number | null;
         
 }

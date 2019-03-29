@@ -41,5 +41,14 @@ export default class ClassInfoController {
         await this.classInfoRepo.create(classInfo)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
-    }
+    };
+    getClassByIdUser = async (req: Request, res: Response, next: NextFunction) => {
+
+        console.log("Received get Class  by subject==> GET");
+        let idUser = req.query.idUser;
+
+        await this.classInfoRepo.findByIdUser(idUser)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
 }
