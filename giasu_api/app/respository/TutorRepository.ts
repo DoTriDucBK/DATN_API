@@ -9,9 +9,6 @@ export default class TutorRepository {
     public async getAll(){
         return await this.tutorRepo.find();
     }
-    public async getOne(id:number) : Promise<Tutor>{
-        return await this.tutorRepo.findOne({"idTutor": id});
-    }
     public async delete(id){
         return await this.tutorRepo.delete(id);
     }
@@ -29,5 +26,8 @@ export default class TutorRepository {
     }
     public async findTutor (options){
         return await this.tutorRepo.find(options)
+    }
+    public async findById(id: number){
+        return await this.tutorRepo.find({"idTutor": id})
     }
 }

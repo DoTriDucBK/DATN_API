@@ -30,7 +30,7 @@ export default class TutorController {
         console.log("Received get Brand vehicle  by name==> GET");
         let id = req.query.idTutor;
 
-        await this.tutorRepo.getOne(id)
+        await this.tutorRepo.findById(id)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
