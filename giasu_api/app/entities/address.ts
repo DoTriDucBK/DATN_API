@@ -12,18 +12,18 @@ export class address {
     idAddress:number;
         
 
+    @Column("int",{ 
+        nullable:false,
+        name:"idCity"
+        })
+    idCity:number;
+        
+
     @Column("varchar",{ 
         nullable:false,
         length:45,
         name:"nameAddress"
         })
     nameAddress:string;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"idCity"
-        })
-    idCity:number;
         
 }

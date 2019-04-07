@@ -30,4 +30,7 @@ export default class TutorRepository {
     public async findById(id: number){
         return await this.tutorRepo.find({"idTutor": id})
     }
+    public async findByName(name: string){
+        return await this.tutorRepo.find({"nameTutor": name})
+    }
 }

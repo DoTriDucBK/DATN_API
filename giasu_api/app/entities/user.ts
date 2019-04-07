@@ -4,6 +4,14 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("user",{schema:"gia_su_thong_minh"})
 export class user {
 
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"emailUser"
+        })
+    emailUser:string;
+        
+
     @PrimaryGeneratedColumn({
         type:"int", 
         name:"idUser"
@@ -13,34 +21,18 @@ export class user {
 
     @Column("varchar",{ 
         nullable:false,
-        length:45,
-        name:"telUser"
-        })
-    telUser:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"emailUser"
-        })
-    emailUser:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"userName"
-        })
-    userName:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
         length:225,
         name:"password"
         })
     password:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"telUser"
+        })
+    telUser:string;
         
 
     @Column("varchar",{ 
@@ -53,16 +45,24 @@ export class user {
 
     @Column("timestamp",{ 
         nullable:true,
+        name:"userCreate"
+        })
+    userCreate:Date | null;
+        
+
+    @Column("timestamp",{ 
+        nullable:true,
         name:"userLastLogin"
         })
     userLastLogin:Date | null;
         
 
-    @Column("timestamp",{ 
-        nullable:true,
-        name:"userCreate"
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"userName"
         })
-    userCreate:Date | null;
+    userName:string;
         
 
     @Column("timestamp",{ 

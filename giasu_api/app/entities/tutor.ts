@@ -4,19 +4,20 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("tutor",{schema:"gia_su_thong_minh"})
 export class tutor {
 
-    @PrimaryGeneratedColumn({
-        type:"int", 
-        name:"idTutor"
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"addressTutor"
         })
-    idTutor:number;
+    addressTutor:string;
         
 
     @Column("varchar",{ 
         nullable:false,
         length:45,
-        name:"nameTutor"
+        name:"birthdayTutor"
         })
-    nameTutor:string;
+    birthdayTutor:string;
         
 
     @Column("varchar",{ 
@@ -30,56 +31,9 @@ export class tutor {
     @Column("varchar",{ 
         nullable:false,
         length:45,
-        name:"telTutor"
-        })
-    telTutor:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"jobTutor"
-        })
-    jobTutor:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"addressTutor"
-        })
-    addressTutor:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
         name:"fee"
         })
     fee:string;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"birthdayTutor"
-        })
-    birthdayTutor:string;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"idCity"
-        })
-    idCity:number;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"nameCity"
-        })
-    nameCity:string;
         
 
     @Column("int",{ 
@@ -89,12 +43,18 @@ export class tutor {
     idAdress:number | null;
         
 
-    @Column("varchar",{ 
-        nullable:false,
-        length:225,
-        name:"nameAdress"
+    @Column("int",{ 
+        nullable:true,
+        name:"idCity"
         })
-    nameAdress:string;
+    idCity:number | null;
+        
+
+    @PrimaryGeneratedColumn({
+        type:"int", 
+        name:"idTutor"
+        })
+    idTutor:number;
         
 
     @Column("varchar",{ 
@@ -108,9 +68,9 @@ export class tutor {
     @Column("varchar",{ 
         nullable:false,
         length:45,
-        name:"nameSubject"
+        name:"jobTutor"
         })
-    nameSubject:string;
+    jobTutor:string;
         
 
     @Column("varchar",{ 
@@ -127,5 +87,45 @@ export class tutor {
         name:"methodTeaching"
         })
     methodTeaching:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:225,
+        name:"nameAdress"
+        })
+    nameAdress:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"nameCity"
+        })
+    nameCity:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"nameSubject"
+        })
+    nameSubject:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"nameTutor"
+        })
+    nameTutor:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"telTutor"
+        })
+    telTutor:string;
         
 }

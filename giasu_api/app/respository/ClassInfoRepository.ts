@@ -9,8 +9,8 @@ export default class ClassInfoRepository {
     public async getAll(){
         return await this.classInfoRepo.find();
     }
-    public async getOne(id:number) : Promise<ClassInfo>{
-        return await this.classInfoRepo.findOne({"idClass": id});
+    public async findByIdClass (id: number){
+        return await this.classInfoRepo.find({"idClass": id})
     }
     public async delete(id){
         return await this.classInfoRepo.delete(id);
@@ -25,7 +25,7 @@ export default class ClassInfoRepository {
     }
     
     public async findBySubject (sub: string){
-        return await this.classInfoRepo.findOne({"nameSubject": sub})
+        return await this.classInfoRepo.find({"nameSubject": sub})
     }
     public async searchClass (options){
         return await this.classInfoRepo.find(options);

@@ -71,10 +71,13 @@ export default class UserController {
     public putLogout = async (req: Request, res: Response) => {
         console.log("Logout user ==> PUT")
         var token = req.headers.authorization;
+        console.log(token)
         if (!token) MyUtil.handleError({ message: "Token is invalid" }, res);
         await this.userAccountService.logout(token)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
+            console.log("DDZ");
+            
     }
 
     public putUpdateUser = async (req: Request, res: Response) => {

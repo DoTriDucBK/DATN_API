@@ -4,25 +4,27 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("classinfo",{schema:"gia_su_thong_minh"})
 export class classinfo {
 
-    @PrimaryGeneratedColumn({
-        type:"int", 
-        name:"idClass"
-        })
-    idClass:number;
-        
-
-    @Column("int",{ 
-        nullable:true,
-        name:"idUser"
-        })
-    idUser:number | null;
-        
-
-    @Column("tinyint",{ 
+    @Column("varchar",{ 
         nullable:false,
-        name:"status"
+        length:225,
+        name:"address"
         })
-    status:number;
+    address:string;
+        
+
+    @Column("longtext",{ 
+        nullable:true,
+        name:"description"
+        })
+    description:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:300,
+        name:"detailClass"
+        })
+    detailClass:string | null;
         
 
     @Column("int",{ 
@@ -30,6 +32,27 @@ export class classinfo {
         name:"fee"
         })
     fee:number;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"idAddress"
+        })
+    idAddress:number | null;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"idCity"
+        })
+    idCity:number | null;
+        
+
+    @PrimaryGeneratedColumn({
+        type:"int", 
+        name:"idClass"
+        })
+    idClass:number;
         
 
     @Column("int",{ 
@@ -47,13 +70,6 @@ export class classinfo {
         
 
     @Column("int",{ 
-        nullable:true,
-        name:"idSubject"
-        })
-    idSubject:number | null;
-        
-
-    @Column("int",{ 
         nullable:false,
         name:"idPartHour"
         })
@@ -62,16 +78,24 @@ export class classinfo {
 
     @Column("int",{ 
         nullable:true,
-        name:"idAddress"
+        name:"idSubject"
         })
-    idAddress:number | null;
+    idSubject:number | null;
         
 
-    @Column("longtext",{ 
+    @Column("int",{ 
         nullable:true,
-        name:"description"
+        name:"idUser"
         })
-    description:string | null;
+    idUser:number | null;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"nameCity"
+        })
+    nameCity:string;
         
 
     @Column("varchar",{ 
@@ -90,35 +114,33 @@ export class classinfo {
     nameSubject:string;
         
 
-    @Column("varchar",{ 
+    @Column("int",{ 
         nullable:false,
-        length:225,
-        name:"address"
+        name:"numberDay"
         })
-    address:string;
-        
-
-    @Column("varchar",{ 
-        nullable:true,
-        length:300,
-        name:"detailClass"
-        })
-    detailClass:string | null;
+    numberDay:number;
         
 
     @Column("int",{ 
         nullable:true,
-        name:"idCity"
+        name:"numberStudent"
         })
-    idCity:number | null;
+    numberStudent:number | null;
         
 
     @Column("varchar",{ 
-        nullable:false,
+        nullable:true,
         length:45,
-        name:"nameCity"
+        name:"shareClass"
         })
-    nameCity:string;
+    shareClass:string | null;
+        
+
+    @Column("tinyint",{ 
+        nullable:false,
+        name:"status"
+        })
+    status:number;
         
 
     @Column("varchar",{ 
@@ -127,12 +149,5 @@ export class classinfo {
         name:"typeMethod"
         })
     typeMethod:string;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"numberDay"
-        })
-    numberDay:number;
         
 }

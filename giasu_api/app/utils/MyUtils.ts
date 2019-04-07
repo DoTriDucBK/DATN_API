@@ -1,4 +1,5 @@
 import {user} from '../entities/user';
+import {tutor_login} from '../entities/tutor_login';
 import * as bcrypt from "bcrypt";
 var jwt = require('jsonwebtoken');
 var config = require('../config/token');
@@ -18,6 +19,16 @@ export const MyUtil = {
             return null;
         }
         var token = jwt.sign({ id: user.idUser }, config.secret, {
+            expiresIn: config.expires // expires in 24 hours
+        });
+        return token;
+    },
+    getTokenTutor: (tutor: tutor_login) => {
+        if (!tutor) {
+            console.log("Tutor is not existed!")
+            return null;
+        }
+        var token = jwt.sign({ id: tutor.idTutorLogin }, config.secret, {
             expiresIn: config.expires // expires in 24 hours
         });
         return token;

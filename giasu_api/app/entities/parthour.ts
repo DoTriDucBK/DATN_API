@@ -4,6 +4,20 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("parthour",{schema:"gia_su_thong_minh"})
 export class parthour {
 
+    @Column("time",{ 
+        nullable:false,
+        name:"beginHour"
+        })
+    beginHour:string;
+        
+
+    @Column("time",{ 
+        nullable:false,
+        name:"endHour"
+        })
+    endHour:string;
+        
+
     @Column("int",{ 
         nullable:false,
         primary:true,
@@ -25,19 +39,5 @@ export class parthour {
         name:"valueHour"
         })
     valueHour:number | null;
-        
-
-    @Column("time",{ 
-        nullable:false,
-        name:"beginHour"
-        })
-    beginHour:string;
-        
-
-    @Column("time",{ 
-        nullable:false,
-        name:"endHour"
-        })
-    endHour:string;
         
 }

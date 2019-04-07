@@ -6,6 +6,7 @@ router.get("/", tutorController.getAll);
 router.get("/tutor-id",tutorController.getTutorById);
 router.get("/tutor-subject", tutorController.getTutorBySubject);
 router.get("/search-tutor", tutorController.searchTutor);
-router.post('/', tutorController.createTutor);
+router.post("/", tutorController.createTutor);
+router.get("/tutor-name", tutorController.getTutorByName);
 
 module.exports = router;

@@ -25,6 +25,15 @@ export default class TutorController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    getTutorByName = async (req: Request, res: Response, next: NextFunction) => {
+
+        console.log("Received get Tutor by name==> GET");
+        let name = req.query.nameTutor;
+
+        await this.tutorRepo.findByName(name)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
 
     getTutorById = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received get Brand vehicle  by name==> GET");

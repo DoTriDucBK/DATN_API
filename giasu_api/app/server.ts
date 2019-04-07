@@ -22,12 +22,14 @@ createConnection().catch(e => console.log(e)).then((e) =>{
 	const tutorLoginRouter = require("./router/TutorLoginRouter");
 	const userRouter = require("./router/UserRouter");
 	const classUserRouter = require("./router/ClassUserRouter");
+	const classTutorRouter = require("./router/ClassTutorRouter")
 	app.use('/subject', subjectRouter);
 	app.use('/tutor', tutorRouter);
 	app.use('/class-info', classInfoRouter);
 	app.use('/tutor-login',tutorLoginRouter);
 	app.use('/user',userRouter); 
-	app.use('/class-user', classUserRouter)
+	app.use('/class-user', classUserRouter);
+	app.use('/class-tutor', classTutorRouter);
 	app.listen('8081', ()=>{
 		console.log('hello')
 	})
