@@ -53,4 +53,18 @@ export default class ClassInfoController {
         let idClass = req.query.idClass;
         await this.classInfoRepo.findByIdClass(idClass).then(data => MyUtil.handleSuccess(data,res)).catch(err=>MyUtil.handleError(err,res))
     };
+    editClass = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received editClass ==> PUT");
+
+        var classInfo: ClassInfo = new ClassInfo();
+        var id = req.body.idClass;
+
+        classInfo = req.body;
+
+        await this.classInfoRepo.update(id, classInfo).then((result) => {
+            res.send({ code: "success", data: result ? result : {} })
+        }).catch(err => MyUtil.handleError(err, res))
+            ;
+
+    };
 }

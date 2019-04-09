@@ -8,5 +8,5 @@ router.get("/tutor-subject", tutorController.getTutorBySubject);
 router.get("/search-tutor", tutorController.searchTutor);
 router.post("/", tutorController.createTutor);
 router.get("/tutor-name", tutorController.getTutorByName);
-
+router.post('/edit-tutor', tutorController.editTutor)
 module.exports = router;

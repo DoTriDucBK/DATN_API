@@ -21,6 +21,14 @@ export class tutor {
         
 
     @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"degree_image"
+        })
+    degree_image:string | null;
+        
+
+    @Column("varchar",{ 
         nullable:false,
         length:45,
         name:"emailTutor"
@@ -48,6 +56,14 @@ export class tutor {
         name:"idCity"
         })
     idCity:number | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"identification"
+        })
+    identification:string | null;
         
 
     @PrimaryGeneratedColumn({

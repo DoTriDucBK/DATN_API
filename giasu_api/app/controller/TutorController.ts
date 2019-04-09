@@ -60,5 +60,19 @@ export default class TutorController {
         await this.tutorRepo.findTutor(options)
             .then(data => MyUtil.handleSuccess(data,res))
             .catch(err => MyUtil.handleError(err,res))
-    }
+    };
+    editTutor = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received editTutor ==> PUT");
+
+        var tutor: Tutor = new Tutor();
+        var id = req.body.idTutor;
+
+        tutor = req.body;
+
+        await this.tutorRepo.update(id, tutor).then((result) => {
+            res.send({ code: "success", data: result ? result : {} })
+        }).catch(err => MyUtil.handleError(err, res))
+            ;
+
+    };
 }
