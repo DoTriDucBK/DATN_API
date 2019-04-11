@@ -10,7 +10,7 @@ export default interface IUserAccountService {
     findByEmail(email: string): Promise<User>
     findByPhone(phone: any): Promise<User>
     findByUsername(username: string) : Promise<User>
-    login( username: string, password: string): Promise<User>
+    login( username: string, password: string, type:number): Promise<User>
     logout(token: string): Promise<User>;
     changePassword(token: string, data: object): Promise<User>
 }

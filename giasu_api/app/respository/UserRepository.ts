@@ -12,10 +12,9 @@ export default class UserRepository {
     public async getOne(id: number): Promise<User> {
         return await this.userRepo.findOne({"idUser": id });
     }
-    public async create(user: User) {
+    public async create(user: User):Promise<User> {
         return await this.userRepo.save(user);
     }
-
     public async delete(id: number): Promise<User> {
         let user = await this.getOne(id);
         await this.userRepo.delete(id);

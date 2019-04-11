@@ -45,10 +45,11 @@ export default class UserController {
 
         let username = req.body.userName;
         let password = req.body.password;
+        let type = req.body.type;
 
-        if (!username || !password) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
+        if (!username || !password || !type) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
 
-        await this.userAccountService.login(username, password)
+        await this.userAccountService.login(username, password,type)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     }

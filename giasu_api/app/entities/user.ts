@@ -43,6 +43,13 @@ export class user {
     token:string | null;
         
 
+    @Column("int",{ 
+        nullable:false,
+        name:"type"
+        })
+    type:number;
+        
+
     @Column("timestamp",{ 
         nullable:true,
         name:"userCreate"

@@ -68,8 +68,7 @@ export default class UserAccountService implements IUserAccountService {
             user.password = MyUtil.getHashPass(user.password);
         } else throw new Error("Password is not true format")
 
-        // if ((!user.userName) && user.telUser) user.userName = user.telUser;
-        // else if ((!user.userName) && (!user.user_account_phone) && user.user_account_email) user.user_account_name = user.user_account_email;
+    
 
         user.userCreate = new Date();
 
@@ -88,6 +87,7 @@ export default class UserAccountService implements IUserAccountService {
 
         return result;
     }
+
 
     public async delete(id: number): Promise<User> {
         return await this.userRepo.delete(id);
@@ -190,7 +190,7 @@ export default class UserAccountService implements IUserAccountService {
         return await this.userRepo.findByPhone(phone);
     }
 
-    public async login(username: string, password: string): Promise<User> {
+    public async login(username: string, password: string, type:number): Promise<User> {
 
         if (!username || !password) throw new Error("Data is not enough!");
 
