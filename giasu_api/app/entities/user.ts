@@ -4,27 +4,11 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("user",{schema:"gia_su_thong_minh"})
 export class user {
 
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"emailUser"
-        })
-    emailUser:string;
-        
-
     @PrimaryGeneratedColumn({
         type:"int", 
         name:"idUser"
         })
     idUser:number;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:225,
-        name:"password"
-        })
-    password:string;
         
 
     @Column("varchar",{ 
@@ -36,6 +20,30 @@ export class user {
         
 
     @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"emailUser"
+        })
+    emailUser:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:45,
+        name:"userName"
+        })
+    userName:string;
+        
+
+    @Column("varchar",{ 
+        nullable:false,
+        length:225,
+        name:"password"
+        })
+    password:string;
+        
+
+    @Column("varchar",{ 
         nullable:true,
         length:225,
         name:"token"
@@ -43,11 +51,11 @@ export class user {
     token:string | null;
         
 
-    @Column("int",{ 
-        nullable:false,
-        name:"type"
+    @Column("timestamp",{ 
+        nullable:true,
+        name:"userLastLogin"
         })
-    type:number;
+    userLastLogin:Date | null;
         
 
     @Column("timestamp",{ 
@@ -59,23 +67,15 @@ export class user {
 
     @Column("timestamp",{ 
         nullable:true,
-        name:"userLastLogin"
-        })
-    userLastLogin:Date | null;
-        
-
-    @Column("varchar",{ 
-        nullable:false,
-        length:45,
-        name:"userName"
-        })
-    userName:string;
-        
-
-    @Column("timestamp",{ 
-        nullable:true,
         name:"userUpdate"
         })
     userUpdate:Date | null;
+        
+
+    @Column("int",{ 
+        nullable:false,
+        name:"type"
+        })
+    type:number;
         
 }

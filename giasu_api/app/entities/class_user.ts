@@ -4,13 +4,6 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("class_user",{schema:"gia_su_thong_minh"})
 export class class_user {
 
-    @Column("int",{ 
-        nullable:false,
-        name:"idClass"
-        })
-    idClass:number;
-        
-
     @PrimaryGeneratedColumn({
         type:"int", 
         name:"idClass_User"
@@ -19,10 +12,10 @@ export class class_user {
         
 
     @Column("int",{ 
-        nullable:true,
-        name:"idTutor"
+        nullable:false,
+        name:"idClass"
         })
-    idTutor:number | null;
+    idClass:number;
         
 
     @Column("int",{ 
@@ -37,5 +30,20 @@ export class class_user {
         name:"status"
         })
     status:number;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"idTutor"
+        })
+    idTutor:number | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"comment"
+        })
+    comment:string | null;
         
 }

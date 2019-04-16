@@ -4,18 +4,18 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 @Entity("class_tutor",{schema:"gia_su_thong_minh"})
 export class class_tutor {
 
-    @Column("int",{ 
-        nullable:false,
-        name:"idClass"
-        })
-    idClass:number;
-        
-
     @PrimaryGeneratedColumn({
         type:"int", 
         name:"idClass_Tutor"
         })
     idClass_Tutor:number;
+        
+
+    @Column("int",{ 
+        nullable:false,
+        name:"idClass"
+        })
+    idClass:number;
         
 
     @Column("int",{ 
@@ -27,15 +27,15 @@ export class class_tutor {
 
     @Column("int",{ 
         nullable:false,
-        name:"idUser"
+        name:"status"
         })
-    idUser:number;
+    status:number;
         
 
     @Column("int",{ 
         nullable:false,
-        name:"status"
+        name:"idUser"
         })
-    status:number;
+    idUser:number;
         
 }
