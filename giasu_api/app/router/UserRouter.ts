@@ -10,5 +10,6 @@ router.put('/login', userController.putLogin);
 router.put('/logout', userController.putLogout);
 router.put('/edit', userController.putUpdateUser);
 router.put('/change-password', userController.putChangePassword)
-
+router.post('/edit-user', userController.editUser);
+router.put('/delete-user', userController.deleteUser)
 module.exports = router;

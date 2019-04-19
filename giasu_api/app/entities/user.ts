@@ -78,4 +78,11 @@ export class user {
         })
     type:number;
         
+
+    @Column("int",{ 
+        nullable:true,
+        name:"active"
+        })
+    active:number | null;
+        
 }

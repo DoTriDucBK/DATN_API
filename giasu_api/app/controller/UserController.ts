@@ -3,12 +3,15 @@ import { Request, Response, NextFunction } from "express";
 import IUserAccountService from "../service/IUserAccountService";
 import UserAccountServiceImpl from "../service/UserAccountServiceImp";
 import { MyUtil } from "../utils/MyUtils";
+import UserRepository from "../respository/UserRepository";
 
 export default class UserController {
     private userAccountService: IUserAccountService;
+    private  userRepo :UserRepository;
 
     constructor() {
-        this.userAccountService = new UserAccountServiceImpl()
+        this.userAccountService = new UserAccountServiceImpl();
+        this.userRepo = new UserRepository();
     }
 
     public getAll = async (req: Request, res: Response) => {
@@ -104,6 +107,27 @@ export default class UserController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
 
-    }
+    };
+    editUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received editClassUser ==> PUT");
 
+        var user: User = new User();
+        var id = req.body.idUser;
+
+        user = req.body;
+
+        await this.userRepo.update(id, user).then((result) => {
+            res.send({ code: "success", data: result ? result : {} })
+        }).catch(err => MyUtil.handleError(err, res))
+            ;
+
+    };
+    deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received delete user ==> PUT");
+        var id = req.body.idUser;
+
+        await this.userRepo.delete(id).then((result) => MyUtil.handleSuccess(result, res))
+            .catch(err => MyUtil.handleError(err, res));
+
+    }
 }
