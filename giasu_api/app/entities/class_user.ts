@@ -46,4 +46,18 @@ export class class_user {
         })
     comment:string | null;
         
+
+    @Column("int",{ 
+        nullable:true,
+        name:"notification"
+        })
+    notification:number | null;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"is_seen"
+        })
+    is_seen:number | null;
+        
 }

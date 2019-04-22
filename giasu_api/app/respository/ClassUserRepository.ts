@@ -19,7 +19,13 @@ export default class ClassUserRepository {
     public async findByIdClass (id:number){
         return await this.classUserRepo.find({"idClass": id});
     }
+    public async findByIdTutor (id:number){
+        return await this.classUserRepo.find({"idTutor":id});
+    }
     public async update(id, classUser){
         return await this.classUserRepo.update(id, classUser);
+    }
+    public async findNotification (options){
+        return await this.classUserRepo.find(options)
     }
 }

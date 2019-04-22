@@ -1,35 +1,14 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 
 
-@Entity("class_tutor",{schema:"gia_su_thong_minh"})
-export class class_tutor {
+@Entity("user_user",{schema:"gia_su_thong_minh"})
+export class user_user {
 
     @PrimaryGeneratedColumn({
         type:"int", 
-        name:"idClass_Tutor"
+        name:"idUserUser"
         })
-    idClass_Tutor:number;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"idClass"
-        })
-    idClass:number;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"idTutor"
-        })
-    idTutor:number;
-        
-
-    @Column("int",{ 
-        nullable:false,
-        name:"status"
-        })
-    status:number;
+    idUserUser:number;
         
 
     @Column("int",{ 
@@ -37,6 +16,13 @@ export class class_tutor {
         name:"idUser"
         })
     idUser:number;
+        
+
+    @Column("int",{ 
+        nullable:true,
+        name:"idUserOfClass"
+        })
+    idUserOfClass:number | null;
         
 
     @Column("int",{ 
@@ -51,5 +37,12 @@ export class class_tutor {
         name:"is_seen"
         })
     is_seen:number | null;
+        
+
+    @Column("int",{ 
+        nullable:false,
+        name:"idClass"
+        })
+    idClass:number;
         
 }

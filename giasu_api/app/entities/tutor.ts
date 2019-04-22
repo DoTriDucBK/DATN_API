@@ -158,4 +158,67 @@ export class tutor {
         })
     times_vote:number | null;
         
+
+    @Column("int",{ 
+        nullable:true,
+        name:"authentication"
+        })
+    authentication:number | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"monday"
+        })
+    monday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"tuesday"
+        })
+    tuesday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"wednesday"
+        })
+    wednesday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"thursday"
+        })
+    thursday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"friday"
+        })
+    friday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"saturday"
+        })
+    saturday:string | null;
+        
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:45,
+        name:"sunday"
+        })
+    sunday:string | null;
+        
 }

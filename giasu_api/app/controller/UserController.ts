@@ -31,7 +31,15 @@ export default class UserController {
             .then((data) => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res));
     };
+    getUserByIdUser = async (req: Request, res: Response, next: NextFunction) => {
 
+        console.log("Received get Class  by idClass ==> GET");
+        let idUser = req.query.idUser;
+
+        await this.userRepo.findByIdUser(idUser)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
     public getUserByToken = async (req: Request, res: Response) => {
         console.log("get user account by token ==> GET")
         var token = req.headers.authorization;

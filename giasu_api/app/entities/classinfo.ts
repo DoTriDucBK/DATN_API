@@ -151,4 +151,11 @@ export class classinfo {
         })
     shareClass:string | null;
         
+
+    @Column("int",{ 
+        nullable:true,
+        name:"limitStudent"
+        })
+    limitStudent:number | null;
+        
 }

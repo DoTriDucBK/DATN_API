@@ -2,19 +2,23 @@ import { class_user as ClassUser } from '../entities/class_user';
 import { Request, Response, NextFunction } from 'express'
 import ClassUserRepository from '../respository/ClassUserRepository';
 import TutorRepository from '../respository/TutorRepository';
-import ClassInfoRepository from '../respository/ClassInfoRepository'
+import ClassInfoRepository from '../respository/ClassInfoRepository';
+import UserAPI from '../respository/UserRepository';
 import { MyUtil } from "../utils/MyUtils";
 import { classinfo as ClassInfo } from '../entities/classinfo';
 import { tutor as Tutor } from '../entities/tutor';
+import UserRepository from '../respository/UserRepository';
 
 export default class ClassUserController {
     private classUserRepo: ClassUserRepository;
     private classInfoRepo: ClassInfoRepository;
+    private userRepo:UserRepository;
     private tutorRepo: TutorRepository;
     constructor() {
         this.classUserRepo = new ClassUserRepository();
         this.classInfoRepo = new ClassInfoRepository();
         this.tutorRepo = new TutorRepository();
+        this.userRepo = new UserRepository();
     }
     public getAll = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received get all class ==> GET");
@@ -68,6 +72,13 @@ export default class ClassUserController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    searchClassUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get list Tutor search ==> GET");
+        let options = req.query;
+        await this.classUserRepo.findNotification(options)
+            .then(data => MyUtil.handleSuccess(data,res))
+            .catch(err => MyUtil.handleError(err,res))
+    };
     editClassUser = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received editClassUser ==> PUT");
 
@@ -105,4 +116,32 @@ export default class ClassUserController {
         }
 
     }
+    getClassInfoAndTutorByIdTutor = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Lấy thông tin 2 bảng");
+        let options = req.query;
+        var classUsers = await this.classUserRepo.findNotification(options);
+        var resulf = []
+        if (classUsers) {
+            for (let i = 0; i < classUsers.length; i++) {
+                var classUser = classUsers[i];
+                var classInfo = await this.classInfoRepo.findByIdClass(classUser["idClass"]);
+                var user = await this.userRepo.findByIdUser(classUser["idUser"]);
+                
+                var detail = Object.assign(classUser, { classInfo: classInfo, user: user });
+                resulf.push(detail)
+
+            }
+            MyUtil.handleSuccess(resulf, res)
+        }else{
+            MyUtil.handleError({message: "Lỗi"}, res)
+        }
+
+    };
+    searchNotification = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get list Tutor search ==> GET");
+        let options = req.query;
+        await this.classUserRepo.findNotification(options)
+            .then(data => MyUtil.handleSuccess(data,res))
+            .catch(err => MyUtil.handleError(err,res))
+    };
 }

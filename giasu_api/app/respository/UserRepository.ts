@@ -30,6 +30,9 @@ export default class UserRepository {
         let user = await this.userRepo.findOne({ "userName": username })
         return user;
     }
+    public async findByIdUser (id:number){
+        return await this.userRepo.find({"idUser": id});
+    }
 
     public async findByEmail(email: string): Promise<User> {
         let user = await this.userRepo.findOne({ "emailUser": email })

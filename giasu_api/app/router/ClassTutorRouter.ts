@@ -5,5 +5,6 @@ let classTutorController = new ClassTutorController();
 router.get("/", classTutorController.getAll);
 router.post("/", classTutorController.createClassTutor);
 router.get("/class-id",classTutorController.getClassByIdUser);
-
+router.get("/class-tutor-by-idTutor", classTutorController.getClassInfoAndTutorByIdTutor);
+router.get("/search-notification", classTutorController.searchNotification);
 module.exports = router;

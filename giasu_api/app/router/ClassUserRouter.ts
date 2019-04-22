@@ -8,4 +8,6 @@ router.get("/class-id",classUserController.getClassByIdUser);
 router.get("/class-idClass", classUserController.getClassByIdClass);
 router.post('/edit-classUser', classUserController.editClassUser)
 router.get("/class-tutor", classUserController.getClassInfoAndTutor);
+router.get("/class-tutor-by-idTutor", classUserController.getClassInfoAndTutorByIdTutor);
+router.get("/search-notification", classUserController.searchClassUser);
 module.exports = router;
