@@ -26,6 +26,9 @@ export default class ClassTutorRepository {
     public async findByIdUser (id: number){
         return await this.classTutorRepo.find({"idUser": id})
     }
+    public async findByIdTutor (id:number){
+        return await this.classTutorRepo.find({"idTutor": id})
+    }
     public async findNotification (options){
         return await this.classTutorRepo.find(options)
     }

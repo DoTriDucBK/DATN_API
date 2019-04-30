@@ -149,35 +149,7 @@ export default class UserAccountService implements IUserAccountService {
         return await this.userRepo.update(id, userAccount);
     }
 
-    public async changePassword(token: string, data: object) {
-        // if ((!token) || (!data) || (!data["old_pass"]) || (!data["new_pass"])) throw new Error("Bạn chưa nhập đủ thông tin!");
-        var user = new User();
-        return user;
-
-        // await this.userRepo.findByToken(token)
-        //     .then(data => user = data)
-        //     .catch(err => console.log(err))
-        // if (!user) throw new Error("Token is not existed!");
-
-        // var user_acc_id = MyUtil.getUserIdByToken(token);
-        // if (!user_acc_id || (user_acc_id <= 0) || (user.user_account_id !== user_acc_id)) throw new Error("Token is not true!");
-
-        // if (!MyUtil.checkPass(data["old_pass"], user.user_account_password)) throw new Error("Mật khẩu không đúng!")
-
-        // if (Utils.checkPassword(data["new_pass"])) {
-        //     user.user_account_password = MyUtil.getHashPass(data["new_pass"]);
-        // } else throw new Error("Password is not true format")
-
-        // user.user_account_token = MyUtil.getToken(user);
-        // user.user_account_update = new Date();
-        // var result = null;
-        // await this.userRepo.update(user.user_account_id, user)
-        //     .then(data => result = data)
-        //     .catch(err => console.log(err))
-        // if (result) return result
-        // else throw new Error("Có lỗi xảy ra, vui lòng thử lại sau!")
-    }
-
+    
     public async findByUsername(username: string): Promise<User> {
         return await this.userRepo.findByUserName(username);
     }
@@ -226,12 +198,17 @@ export default class UserAccountService implements IUserAccountService {
 
         var id = MyUtil.getUserIdByToken(token);
         if (!id || (id <= 0) || (user.idUser !== id)) throw new Error("Token is not true!");
-        user.token = MyUtil.getToken(user);
-            user.userLastLogin = new Date();
-            user.userUpdate = new Date();
-            await this.userRepo.update(user.idUser, user)
-                .then(data => user = data)
-                .catch(err => { throw new Error(err) })
-            return user
+
+        user.token = "";
+        user.userUpdate = new Date();
+        await this.userRepo.update(user.idUser, user)
+            .then(data => user = data)
+            .catch(err => { throw new Error(err) })
+        return user
     }
+    public async changePassword(token: string, data: object) {
+        var user = new User();
+        return user;
+    }
+
 }

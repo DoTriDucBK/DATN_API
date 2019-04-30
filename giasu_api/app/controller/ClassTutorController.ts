@@ -60,6 +60,15 @@ export default class ClassTutorController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    getClassByIdTutor = async (req: Request, res: Response, next: NextFunction) => {
+
+        console.log("Received get Class  by subject==> GET");
+        let idTutor = req.query.idTutor;
+
+        await this.classTutorRepo.findByIdTutor(idTutor)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
     searchNotification = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received get list Tutor search ==> GET");
         let options = req.query;
@@ -84,5 +93,19 @@ export default class ClassTutorController {
         }else{
             MyUtil.handleError({message: "Lỗi"}, res)
         }
+    };
+    editClassTutor = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received editClassTutor ==> PUT");
+
+        var classTutor: ClassTutor = new ClassTutor();
+        var id = req.body.idClass_Tutor;
+
+        classTutor = req.body;
+
+        await this.classTutorRepo.update(id, classTutor).then((result) => {
+            res.send({ code: "success", data: result ? result : {} })
+        }).catch(err => MyUtil.handleError(err, res))
+            ;
+
     };
 }
