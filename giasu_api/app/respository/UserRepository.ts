@@ -33,6 +33,9 @@ export default class UserRepository {
     public async findByIdUser (id:number){
         return await this.userRepo.find({"idUser": id});
     }
+    public async getUserByName (name:string){
+        return await this.userRepo.find({"userName": name});
+    }
 
     public async findByEmail(email: string): Promise<User> {
         let user = await this.userRepo.findOne({ "emailUser": email })
@@ -45,6 +48,9 @@ export default class UserRepository {
     }
     public async findByToken(token: string) :Promise<User> {
         return await this.userRepo.findOne({token: token})
+    }
+    public async findUser (options){
+        return await this.userRepo.find(options)
     }
 
 }

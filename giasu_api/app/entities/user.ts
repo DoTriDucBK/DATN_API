@@ -85,4 +85,11 @@ export class user {
         })
     active:number | null;
         
+
+    @Column("int",{ 
+        nullable:true,
+        name:"point"
+        })
+    point:number | null;
+        
 }

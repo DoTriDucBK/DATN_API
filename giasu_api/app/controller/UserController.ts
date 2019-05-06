@@ -32,11 +32,18 @@ export default class UserController {
             .catch(err => MyUtil.handleError(err, res));
     };
     getUserByIdUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get user  by idUser==> GET");
+        let id = req.query.idUser;
 
-        console.log("Received get Class  by idClass ==> GET");
-        let idUser = req.query.idUser;
+        await this.userRepo.findByIdUser(id)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
+    getUserByName = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get user  by idUser==> GET");
+        let name = req.query.userName;
 
-        await this.userRepo.findByIdUser(idUser)
+        await this.userRepo.getUserByName(name)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
@@ -137,5 +144,12 @@ export default class UserController {
         await this.userRepo.delete(id).then((result) => MyUtil.handleSuccess(result, res))
             .catch(err => MyUtil.handleError(err, res));
 
-    }
+    };
+    searchUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received get list user search ==> GET");
+        let options = req.query;
+        await this.userRepo.findUser(options)
+            .then(data => MyUtil.handleSuccess(data,res))
+            .catch(err => MyUtil.handleError(err,res))
+    };
 }
