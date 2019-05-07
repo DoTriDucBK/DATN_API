@@ -118,8 +118,8 @@ export default class ClassUserController {
     }
     getClassInfoAndTutorByIdTutor = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Lấy thông tin 2 bảng");
-        let options = req.query;
-        var classUsers = await this.classUserRepo.findNotification(options);
+        let status = req.query.status;
+        var classUsers = await this.classUserRepo.findClassByStatus(status);
         var resulf = []
         if (classUsers) {
             for (let i = 0; i < classUsers.length; i++) {
@@ -128,6 +128,26 @@ export default class ClassUserController {
                 var user = await this.userRepo.findByIdUser(classUser["idUser"]);
                 
                 var detail = Object.assign(classUser, { classInfo: classInfo, user: user });
+                resulf.push(detail)
+
+            }
+            MyUtil.handleSuccess(resulf, res)
+        }else{
+            MyUtil.handleError({message: "Lỗi"}, res)
+        }
+
+    };
+    getClassInfoAndTutorByStatusAndId = async (req: Request, res: Response, next: NextFunction) => {
+        let options = req.query;
+        var classUsers = await this.classUserRepo.findNotification(options);
+        var resulf = []
+        if (classUsers) {
+            for (let i = 0; i < classUsers.length; i++) {
+                var classUser = classUsers[i];
+                var classInfo = await this.classInfoRepo.findByIdClass(classUser["idClass"]);
+                var tutor = await this.tutorRepo.findById(classUser["idTutor"]);
+                
+                var detail = Object.assign(classUser, { classInfo: classInfo, tutor: tutor });
                 resulf.push(detail)
 
             }

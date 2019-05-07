@@ -28,4 +28,7 @@ export default class ClassUserRepository {
     public async findNotification (options){
         return await this.classUserRepo.find(options)
     }
+    public async findClassByStatus (status:number){
+        return await this.classUserRepo.find({"status":status});
+    }
 }
