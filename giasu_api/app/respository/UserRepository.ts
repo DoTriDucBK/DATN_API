@@ -26,6 +26,11 @@ export default class UserRepository {
         return await this.getOne(id);
     }
 
+    public async updateTokenFirebase(id: number, tokenFirebase: string): Promise<User> {
+        await this.userRepo.update(id, {tokenFirebase});
+        return await this.getOne(id);
+    }
+
     public async findByUserName(username: string): Promise<User> {
         let user = await this.userRepo.findOne({ "userName": username })
         return user;

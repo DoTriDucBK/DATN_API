@@ -157,6 +157,26 @@ export default class ClassUserController {
         }
 
     };
+    getClassInfoAndUser = async (req: Request, res: Response, next: NextFunction) => {
+        let options = req.query;
+        var classUsers = await this.classUserRepo.findNotification(options);
+        var resulf = []
+        if (classUsers) {
+            for (let i = 0; i < classUsers.length; i++) {
+                var classUser = classUsers[i];
+                var classInfo = await this.classInfoRepo.findByIdClass(classUser["idClass"]);
+                var user = await this.userRepo.findByIdUser(classUser["idUser"]);
+                
+                var detail = Object.assign(classUser, { classInfo: classInfo, user: user });
+                resulf.push(detail)
+
+            }
+            MyUtil.handleSuccess(resulf, res)
+        }else{
+            MyUtil.handleError({message: "Lỗi"}, res)
+        }
+
+    };
     searchNotification = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received get list Tutor search ==> GET");
         let options = req.query;

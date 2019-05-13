@@ -10,5 +10,6 @@ router.post('/edit-classUser', classUserController.editClassUser)
 router.get("/class-tutor", classUserController.getClassInfoAndTutor);
 router.get("/class-tutor-by-idTutor", classUserController.getClassInfoAndTutorByIdTutor);
 router.get("/class-tutor-by-id-status", classUserController.getClassInfoAndTutorByStatusAndId);
+router.get("/class-user", classUserController.getClassInfoAndUser);
 router.get("/search-notification", classUserController.searchClassUser);
 module.exports = router;

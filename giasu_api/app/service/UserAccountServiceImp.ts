@@ -162,12 +162,12 @@ export default class UserAccountService implements IUserAccountService {
         return await this.userRepo.findByPhone(phone);
     }
 
-    public async login(username: string, password: string, type:number): Promise<User> {
+    public async login(email: string, password: string, type:number): Promise<User> {
 
-        if (!username || !password) throw new Error("Data is not enough!");
+        if (!email || !password) throw new Error("Data is not enough!");
 
             let user = new User();
-            await this.userRepo.findByUserName(username)
+            await this.userRepo.findByEmail(email)
                 .then(data => user = data)
                 .catch(err => console.log(err))
            

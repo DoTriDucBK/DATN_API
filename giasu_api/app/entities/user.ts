@@ -92,4 +92,12 @@ export class user {
         })
     point:number | null;
         
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"tokenFirebase"
+        })
+    tokenFirebase:string | null;
+        
 }

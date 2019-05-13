@@ -61,13 +61,13 @@ export default class UserController {
         console.log(req.body)
         if (!req.body || req.body == {}) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
 
-        let username = req.body.userName;
+        let email = req.body.emailUser;
         let password = req.body.password;
         let type = req.body.type;
 
-        if (!username || !password || !type) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
+        if (!email || !password || !type) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
 
-        await this.userAccountService.login(username, password,type)
+        await this.userAccountService.login(email, password,type)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     }
@@ -108,6 +108,18 @@ export default class UserController {
         if (!user || (!token)) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin" }, res);
 
         await this.userAccountService.update(token, user)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    }
+
+    public updateTokenFirebase = async (req: Request, res: Response) => {
+        console.log("update  token firebase user ==> PUT")
+        
+        var tokenFirebase = req.body.tokenFirebase;
+        var id = req.body.idUser;
+        if (!tokenFirebase) MyUtil.handleError({ message: "Lối" }, res);
+
+        await this.userRepo.updateTokenFirebase(id, tokenFirebase)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     }
