@@ -1,5 +1,6 @@
 import {user} from '../entities/user';
 import {tutor_login} from '../entities/tutor_login';
+import {admin} from '../entities/admin';
 import * as bcrypt from "bcrypt";
 var jwt = require('jsonwebtoken');
 var config = require('../config/token');
@@ -19,6 +20,16 @@ export const MyUtil = {
             return null;
         }
         var token = jwt.sign({ id: user.idUser }, config.secret, {
+            expiresIn: config.expires // expires in 24 hours
+        });
+        return token;
+    },
+    getTokenAdmin: (admin: admin) => {
+        if (!admin) {
+            console.log("Admin is not existed!")
+            return null;
+        }
+        var token = jwt.sign({ id: admin.idAdmin }, config.secret, {
             expiresIn: config.expires // expires in 24 hours
         });
         return token;
@@ -43,6 +54,21 @@ export const MyUtil = {
         return res;
     },
     getUserIdByToken: (token: string) => {
+        var user_account_id = 0;
+        if (token) {
+            jwt.verify(token, config.secret, function (err, decoded) {
+                if (err) {
+                    console.log(err.message)
+                }
+                else {
+                    console.log(decoded)
+                    user_account_id = decoded.id
+                }
+            });
+        }
+        return user_account_id;
+    },
+    getAdminIdByToken: (token: string) => {
         var user_account_id = 0;
         if (token) {
             jwt.verify(token, config.secret, function (err, decoded) {

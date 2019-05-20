@@ -19,7 +19,7 @@ createConnection().catch(e => console.log(e)).then((e) =>{
 	const subjectRouter = require("./router/SubjectRouter");
 	const tutorRouter = require("./router/TutorRouter");
 	const classInfoRouter = require("./router/ClassInfoRouter");
-	const tutorLoginRouter = require("./router/TutorLoginRouter");
+	const adminRouter = require("./router/AdminRouter");
 	const userRouter = require("./router/UserRouter");
 	const classUserRouter = require("./router/ClassUserRouter");
     const classTutorRouter = require("./router/ClassTutorRouter");
@@ -28,7 +28,7 @@ createConnection().catch(e => console.log(e)).then((e) =>{
 	app.use('/subject', subjectRouter);
 	app.use('/tutor', tutorRouter);
 	app.use('/class-info', classInfoRouter);
-	app.use('/tutor-login',tutorLoginRouter);
+	app.use('/admin',adminRouter);
 	app.use('/user',userRouter); 
 	app.use('/class-user', classUserRouter);
     app.use('/class-tutor', classTutorRouter);

@@ -158,4 +158,12 @@ export class classinfo {
         })
     limitStudent:number | null;
         
+
+    @Column("varchar",{ 
+        nullable:true,
+        length:225,
+        name:"comment"
+        })
+    comment:string | null;
+        
 }

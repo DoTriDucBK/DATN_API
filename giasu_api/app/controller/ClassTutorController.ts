@@ -70,7 +70,6 @@ export default class ClassTutorController {
             .catch(err => MyUtil.handleError(err, res))
     };
     searchNotification = async (req: Request, res: Response, next: NextFunction) => {
-        console.log("Received get list Tutor search ==> GET");
         let options = req.query;
         await this.classTutorRepo.findNotification(options)
             .then(data => MyUtil.handleSuccess(data,res))

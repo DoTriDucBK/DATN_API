@@ -39,14 +39,6 @@ export class class_user {
     idTutor:number | null;
         
 
-    @Column("varchar",{ 
-        nullable:true,
-        length:225,
-        name:"comment"
-        })
-    comment:string | null;
-        
-
     @Column("int",{ 
         nullable:true,
         name:"notification"
