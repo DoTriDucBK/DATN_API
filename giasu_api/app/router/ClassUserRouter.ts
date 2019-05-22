@@ -12,4 +12,5 @@ router.get("/class-tutor-by-idTutor", classUserController.getClassInfoAndTutorBy
 router.get("/class-tutor-by-id-status", classUserController.getClassInfoAndTutorByStatusAndId);
 router.get("/class-user", classUserController.getClassInfoAndUser);
 router.get("/search-notification", classUserController.searchClassUser);
+router.delete("/",classUserController.deleteClassUser);
 module.exports = router;

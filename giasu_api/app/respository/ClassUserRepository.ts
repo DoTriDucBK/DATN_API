@@ -31,4 +31,13 @@ export default class ClassUserRepository {
     public async findClassByStatus (status:number){
         return await this.classUserRepo.find({"status":status});
     }
+    public async getOne(id: number): Promise<ClassUser> {
+        return await this.classUserRepo.findOne(id);
+    }
+    public async delete(id: number): Promise<ClassUser> {
+        let classUser = await this.getOne(id);
+        await this.classUserRepo.delete(id);
+        return classUser;
+
+    }
 }

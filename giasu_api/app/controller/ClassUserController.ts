@@ -184,4 +184,23 @@ export default class ClassUserController {
             .then(data => MyUtil.handleSuccess(data,res))
             .catch(err => MyUtil.handleError(err,res))
     };
+    public getOne = async (req: Request, res: Response) => {
+        console.log("Received user by id ==> GET");
+        // console.log(req.params);
+        var idClassUser = req.params.idClassUser
+        if (!idClassUser) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin" }, res);
+        await this.classUserRepo.getOne(idClassUser)
+            .then((data) => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res));
+    };
+    deleteClassUser = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received delete ClassUser ==> PUT");
+        var id = req.body.idClass_User;
+        await this.classUserRepo.delete(id).then((result) => {
+            res.send({ code: "success", data: result ? result : {} })
+        }).catch(err => MyUtil.handleError(err, res))
+            ;
+
+    };
+
 }
