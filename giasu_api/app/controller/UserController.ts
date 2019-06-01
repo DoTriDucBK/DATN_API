@@ -129,12 +129,12 @@ export default class UserController {
         console.log("request data: ", req.body)
         var token = req.headers.authorization;
         if (!req.body || (!token)) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin!" }, res);
-        
+
         await this.userAccountService.changePassword(token, req.body)
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
 
-    };
+    }
     editUser = async (req: Request, res: Response, next: NextFunction) => {
         console.log("Received editClassUser ==> PUT");
 

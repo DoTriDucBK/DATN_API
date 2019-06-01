@@ -98,13 +98,6 @@ createConnection().catch(e => console.log(e)).then((e) =>{
             priority: "high",
             timeToLive: 60 * 60 * 24
         };
-        // admin.messaging().sendToDevice(registerToken, payload, options)
-        //     .then(function (response) {
-        //         MyUtil.handleSuccess(response, res)
-        //         })
-        //     .catch(function (error) {
-        //         MyUtil.handleError({message:"error"}, res)
-        //     });
 
         admin.messaging().sendToTopic('test', payload, options).then(function (response) {
             return res.json({ message: 'Push Success!' });

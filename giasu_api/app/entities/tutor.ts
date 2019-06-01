@@ -17,7 +17,6 @@ export class tutor {
         name:"nameTutor"
         })
     nameTutor:string;
-        
 
     @Column("varchar",{ 
         nullable:false,

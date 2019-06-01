@@ -104,9 +104,6 @@ export default class AdminAccountService implements IAdminAccountService {
         var check = false;
         var isPhone = false;
 
-        // if (user.user_account_name === user.user_account_phone) isPhone = true;
-        // if (user.user_account_name === user.user_account_email) isPhone = false;
-
         if (adminAccount.nameAdmin) {
             let user1 = new Admin();
             await this.adminRepo.findByNameAdmin(adminAccount.nameAdmin)
@@ -117,22 +114,7 @@ export default class AdminAccountService implements IAdminAccountService {
                 if (user1.nameAdmin === admin.nameAdmin) check = check && true;
                 else throw new Error("username is existed!!")
             }
-            // if ( userAccount.userName) userAccount.userName = userAccount.user_account_phone;
         }
-
-        // if (userAccount.user_account_email) {
-        //     if (!Utils.isEmailAddress(userAccount.user_account_email)) throw new Error("Email is not format!");
-        //     let user1 = new UserAccount();
-        //     await this.userRepo.findByEmail(userAccount.user_account_email)
-        //         .then(data => user1 = data)
-        //         .catch(err => console.log(err))
-        //     if (!user1) check = check && true;
-        //     else {
-        //         if (user1.user_account_email === user.user_account_email) check = check && true;
-        //         else throw new Error("Email is existed!!")
-        //     }
-        //     if (!isPhone && (!userAccount.user_account_phone)) userAccount.user_account_name = userAccount.user_account_email;
-        // }
 
         if (adminAccount.password) {
             if (!Utils.checkPassword(adminAccount.password)) throw new Error("Password is not true format");

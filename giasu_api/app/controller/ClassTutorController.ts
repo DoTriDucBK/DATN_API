@@ -24,22 +24,6 @@ export default class ClassTutorController {
         ).catch(err => next(err));
 
     };
-    // getClassBySubject = async (req: Request, res: Response, next: NextFunction) => {
-
-    //     console.log("Received get Class  by subject==> GET");
-    //     let nameSubject = req.query.nameSubject;
-
-    //     await this.classInfoRepo.findBySubject(nameSubject)
-    //         .then(data => MyUtil.handleSuccess(data, res))
-    //         .catch(err => MyUtil.handleError(err, res))
-    // };
-    // searchClass = async (req: Request, res: Response, next: NextFunction) => {
-    //     console.log("Received search Class ==> GET");
-    //     let options = req.query;
-    //     await this.classInfoRepo.searchClass(options)
-    //         .then(data => MyUtil.handleSuccess(data,res))
-    //         .catch(err=> MyUtil.handleError(err,res))
-    // };
     createClassTutor = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log("Received createClassInfo ==> POST");

@@ -27,22 +27,6 @@ export default class ClassUserController {
         ).catch(err => next(err));
 
     };
-    // getClassBySubject = async (req: Request, res: Response, next: NextFunction) => {
-
-    //     console.log("Received get Class  by subject==> GET");
-    //     let nameSubject = req.query.nameSubject;
-
-    //     await this.classInfoRepo.findBySubject(nameSubject)
-    //         .then(data => MyUtil.handleSuccess(data, res))
-    //         .catch(err => MyUtil.handleError(err, res))
-    // };
-    // searchClass = async (req: Request, res: Response, next: NextFunction) => {
-    //     console.log("Received search Class ==> GET");
-    //     let options = req.query;
-    //     await this.classInfoRepo.searchClass(options)
-    //         .then(data => MyUtil.handleSuccess(data,res))
-    //         .catch(err=> MyUtil.handleError(err,res))
-    // };
     createClassUser = async (req: Request, res: Response, next: NextFunction) => {
 
         console.log("Received createClassInfo ==> POST");
@@ -186,7 +170,6 @@ export default class ClassUserController {
     };
     public getOne = async (req: Request, res: Response) => {
         console.log("Received user by id ==> GET");
-        // console.log(req.params);
         var idClassUser = req.params.idClassUser
         if (!idClassUser) MyUtil.handleError({ message: "Bạn chưa nhập đủ thông tin" }, res);
         await this.classUserRepo.getOne(idClassUser)
@@ -200,7 +183,5 @@ export default class ClassUserController {
             res.send({ code: "success", data: result ? result : {} })
         }).catch(err => MyUtil.handleError(err, res))
             ;
-
     };
-
 }

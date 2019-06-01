@@ -109,8 +109,6 @@ export default class UserAccountService implements IUserAccountService {
         var check = false;
         var isPhone = false;
 
-        // if (user.user_account_name === user.user_account_phone) isPhone = true;
-        // if (user.user_account_name === user.user_account_email) isPhone = false;
 
         if (userAccount.userName) {
             let user1 = new User();
@@ -122,22 +120,7 @@ export default class UserAccountService implements IUserAccountService {
                 if (user1.userName === user.userName) check = check && true;
                 else throw new Error("username is existed!!")
             }
-            // if ( userAccount.userName) userAccount.userName = userAccount.user_account_phone;
         }
-
-        // if (userAccount.user_account_email) {
-        //     if (!Utils.isEmailAddress(userAccount.user_account_email)) throw new Error("Email is not format!");
-        //     let user1 = new UserAccount();
-        //     await this.userRepo.findByEmail(userAccount.user_account_email)
-        //         .then(data => user1 = data)
-        //         .catch(err => console.log(err))
-        //     if (!user1) check = check && true;
-        //     else {
-        //         if (user1.user_account_email === user.user_account_email) check = check && true;
-        //         else throw new Error("Email is existed!!")
-        //     }
-        //     if (!isPhone && (!userAccount.user_account_phone)) userAccount.user_account_name = userAccount.user_account_email;
-        // }
 
         if (userAccount.password) {
             if (!Utils.checkPassword(userAccount.password)) throw new Error("Password is not true format");
@@ -172,11 +155,11 @@ export default class UserAccountService implements IUserAccountService {
                 .catch(err => console.log(err))
            
             console.log("user: ", user);
-            if (!user) throw new Error("Username is not true!")
+            if (!user) throw new Error("Email không đúng!")
 
             let checkPassword = MyUtil.checkPass(password, user.password);
             console.log("checkPassword", checkPassword)
-            if (!checkPassword) throw new Error("Password is not true!");
+            if (!checkPassword) throw new Error("Password không đúng!");
 
             user.token = MyUtil.getToken(user);
             user.userLastLogin = new Date();
@@ -206,9 +189,32 @@ export default class UserAccountService implements IUserAccountService {
             .catch(err => { throw new Error(err) })
         return user
     }
-    public async changePassword(token: string, data: object) {
+    public async changePassword(token: string, data: object): Promise<User> {
+        if ((!token) || (!data) || (!data["old_pass"]) || (!data["new_pass"])) throw new Error("Bạn chưa nhập đủ thông tin!");
         var user = new User();
-        return user;
+
+        await this.userRepo.findByToken(token)
+            .then(data => user = data)
+            .catch(err => console.log(err))
+        if (!user) throw new Error("Token is not existed!");
+
+        var idUser = MyUtil.getUserIdByToken(token);
+        if (!idUser || (idUser <= 0) || (user.idUser !== idUser)) throw new Error("Token is not true!");
+
+        if (!MyUtil.checkPass(data["old_pass"], user.password)) throw new Error("Mật khẩu không đúng!")
+
+        if (Utils.checkPassword(data["new_pass"])) {
+            user.password = MyUtil.getHashPass(data["new_pass"]);
+        } else throw new Error("Password is not true format")
+
+        user.token = MyUtil.getToken(user);
+        user.userUpdate = new Date();
+        var newUser = new User();
+        await this.userRepo.update(user.idUser, user)
+            .then(data => newUser = data)
+            .catch(err => { throw new Error(err) })
+
+        return newUser;
     }
 
 }
