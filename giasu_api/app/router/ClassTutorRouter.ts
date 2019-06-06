@@ -9,4 +9,5 @@ router.get("/class-tutor-by-idTutor", classTutorController.getClassInfoAndTutorB
 router.post('/edit-classTutor', classTutorController.editClassTutor);
 router.get("/search-notification", classTutorController.searchNotification);
 router.get("/class-idTutor",classTutorController.getClassByIdTutor);
+router.get("/class-idClass",classTutorController.getClassByIdClass);
 module.exports = router;

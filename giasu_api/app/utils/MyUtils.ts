@@ -53,6 +53,20 @@ export const MyUtil = {
         var res = bcrypt.compareSync(newPass, pass) 
         return res;
     },
+    checkType:(type:number, typeUser: number) => {
+        if(type == typeUser){
+            return true;
+        }else{
+            return false;
+        }
+    },
+    checkActive:(active:number) => {
+        if(active == 1){
+            return true
+        }else{
+            return false
+        }
+    },
     getUserIdByToken: (token: string) => {
         var user_account_id = 0;
         if (token) {

@@ -147,7 +147,7 @@ export default class UserAccountService implements IUserAccountService {
 
     public async login(email: string, password: string, type:number): Promise<User> {
 
-        if (!email || !password) throw new Error("Data is not enough!");
+        if (!email || !password || !type) throw new Error("Data is not enough!");
 
             let user = new User();
             await this.userRepo.findByEmail(email)
@@ -160,7 +160,10 @@ export default class UserAccountService implements IUserAccountService {
             let checkPassword = MyUtil.checkPass(password, user.password);
             console.log("checkPassword", checkPassword)
             if (!checkPassword) throw new Error("Password không đúng!");
-
+            let checkType = MyUtil.checkType(type,user.type);
+            if(!checkType) throw new Error("Vai trò không đúng");
+            let checkActive = MyUtil.checkActive(user.active);
+            if(!checkActive) throw new Error("Tài khoản bị vô hiệu hóa!");
             user.token = MyUtil.getToken(user);
             user.userLastLogin = new Date();
             user.userUpdate = new Date();

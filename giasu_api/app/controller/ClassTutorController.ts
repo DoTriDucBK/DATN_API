@@ -53,6 +53,15 @@ export default class ClassTutorController {
             .then(data => MyUtil.handleSuccess(data, res))
             .catch(err => MyUtil.handleError(err, res))
     };
+    getClassByIdClass = async (req: Request, res: Response, next: NextFunction) => {
+
+        console.log("Received get Class  by subject==> GET");
+        let idClass = req.query.idClass;
+
+        await this.classTutorRepo.findByIdClass(idClass)
+            .then(data => MyUtil.handleSuccess(data, res))
+            .catch(err => MyUtil.handleError(err, res))
+    };
     searchNotification = async (req: Request, res: Response, next: NextFunction) => {
         let options = req.query;
         await this.classTutorRepo.findNotification(options)
